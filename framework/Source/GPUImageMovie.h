@@ -44,7 +44,7 @@
 @property (readonly, nonatomic) BOOL videoEncodingIsFinished;
 
 
-@property(readwrite, nonatomic, nullable) CMTimeRange videoRange;
+@property(nonatomic) CMTimeRange videoRange;
 
 /// @name Initialization and teardown
 - (id)initWithAsset:(AVAsset *)asset;
