@@ -43,6 +43,9 @@
 @property (readonly, nonatomic) BOOL audioEncodingIsFinished;
 @property (readonly, nonatomic) BOOL videoEncodingIsFinished;
 
+
+@property(readwrite, nonatomic, nullable) CMTimeRange videoRange;
+
 /// @name Initialization and teardown
 - (id)initWithAsset:(AVAsset *)asset;
 - (id)initWithPlayerItem:(AVPlayerItem *)playerItem;

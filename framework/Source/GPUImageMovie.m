@@ -199,6 +199,7 @@
 {
     NSError *error = nil;
     AVAssetReader *assetReader = [AVAssetReader assetReaderWithAsset:self.asset error:&error];
+    assetReader.timeRange = _videoRange;
 
     NSMutableDictionary *outputSettings = [NSMutableDictionary dictionary];
     if ([GPUImageContext supportsFastTextureUpload]) {
