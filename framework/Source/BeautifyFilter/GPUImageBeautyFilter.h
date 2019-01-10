@@ -1,11 +1,8 @@
-#if __has_include(<GPUImage/GPUImage.h>)
-#import <GPUImage/GPUImage.h>
-#elif __has_include("GPUImage/GPUImage.h")
-#import "GPUImage/GPUImage.h"
-#else
+
 #import "GPUImage.h"
-#endif
-@interface GPUImageBeautyFilter : GPUImageFilter 
+
+
+@interface GPUImageBeautyFilter : GPUImageFilter
 
 /**
  美颜程度
