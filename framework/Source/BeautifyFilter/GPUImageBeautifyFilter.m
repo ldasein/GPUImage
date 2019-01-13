@@ -70,7 +70,7 @@ NSString *const kGPUImageBeautifyFragmentShaderString = SHADER_STRING
 
 @implementation GPUImageBeautifyFilter
 
-- (id)init;
+- (id)initWithEnableCannyEdgeFilter:(BOOL)enable;
 {
     if (!(self = [super init]))
     {
@@ -83,8 +83,13 @@ NSString *const kGPUImageBeautifyFragmentShaderString = SHADER_STRING
     [self addFilter:bilateralFilter];
     
     // Second pass: edge detection
-    cannyEdgeFilter = [[GPUImageCannyEdgeDetectionFilter alloc] init];
-    [self addFilter:cannyEdgeFilter];
+    if (enable){
+        cannyEdgeFilter = [[GPUImageCannyEdgeDetectionFilter alloc] init];
+        [self addFilter:cannyEdgeFilter];
+    }else{
+        sobelEdgeFilter = [[GPUImageSobelEdgeDetectionFilter alloc] init];
+        [self addFilter:sobelEdgeFilter];
+    }
     
     // Third pass: combination bilateral, edge detection and origin
     combinationFilter = [[GPUImageCombinationFilter alloc] init];
@@ -96,11 +101,18 @@ NSString *const kGPUImageBeautifyFragmentShaderString = SHADER_STRING
     [hsbFilter adjustSaturation:1.05]; 
     
     [bilateralFilter addTarget:combinationFilter];
-    [cannyEdgeFilter addTarget:combinationFilter];
+    if (enable){
+        [cannyEdgeFilter addTarget:combinationFilter];
+    }else{
+        [sobelEdgeFilter addTarget:combinationFilter];
+    }
     
     [combinationFilter addTarget:hsbFilter];
-    
-    self.initialFilters = [NSArray arrayWithObjects:bilateralFilter,cannyEdgeFilter,combinationFilter,nil];
+    if (enable){
+        self.initialFilters = [NSArray arrayWithObjects:bilateralFilter,cannyEdgeFilter,combinationFilter,nil];
+    }else{
+        self.initialFilters = [NSArray arrayWithObjects:bilateralFilter,sobelEdgeFilter,combinationFilter,nil];
+    }
     self.terminalFilter = hsbFilter;
     
     return self;

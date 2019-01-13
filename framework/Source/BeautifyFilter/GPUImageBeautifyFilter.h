@@ -12,9 +12,12 @@
 @interface GPUImageBeautifyFilter : GPUImageFilterGroup{
     GPUImageBilateralFilter          *bilateralFilter;
     GPUImageCannyEdgeDetectionFilter *cannyEdgeFilter;
+    GPUImageSobelEdgeDetectionFilter *sobelEdgeFilter;
     GPUImageCombinationFilter        *combinationFilter;
     GPUImageHSBFilter                *hsbFilter;
 }
+
+- (id)initWithEnableCannyEdgeFilter:(BOOL)enable;
 
 /**
  *  A normalization factor for the distance between central color and sample color

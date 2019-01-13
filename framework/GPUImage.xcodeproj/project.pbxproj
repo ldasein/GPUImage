@@ -1581,9 +1581,9 @@
 		E179C1E321E70E1200935937 /* BeautifyFilter */ = {
 			isa = PBXGroup;
 			children = (
+				E179C1E621E70E1200935937 /* GPUImageBeautifyFilter.h */,
 				E179C1E421E70E1200935937 /* GPUImageBeautifyFilter.m */,
 				E179C1E521E70E1200935937 /* GPUImageBeautyFilter.h */,
-				E179C1E621E70E1200935937 /* GPUImageBeautifyFilter.h */,
 				E179C1E721E70E1200935937 /* GPUImageBeautyFilter.m */,
 			);
 			name = BeautifyFilter;
